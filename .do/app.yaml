@@ -4,7 +4,7 @@ services:
   source_dir: store-api
   github:
     branch: main
-    repo: hanzoai/hanzo
+    repo: hanzoai/store-api
     deploy_on_push: true
   run_command: npm start
   environment_slug: node-js
