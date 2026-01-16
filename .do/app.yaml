@@ -1,7 +1,6 @@
 name: hanzo-store-api
 services:
 - name: store-api
-  source_dir: store-api
   github:
     branch: main
     repo: hanzoai/store-api
