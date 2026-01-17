@@ -1,23 +1,23 @@
 name: hanzo-store-api
 services:
-- name: store-api
-  github:
-    branch: main
-    repo: hanzoai/store-api
-    deploy_on_push: true
-  run_command: node server.js
-  environment_slug: node-js
-  instance_count: 1
-  instance_size_slug: basic-xxs
-  http_port: 3003
-  routes:
-  - path: /
-  envs:
-  - key: PORT
-    value: "3003"
-  - key: HOST
-    value: "0.0.0.0"
-  - key: DATA_DIR
-    value: "/data"
-  health_check:
-    http_path: /health
+  - name: store-api
+    source_dir: /
+    github:
+      repo: hanzoai/store-api
+      branch: main
+      deploy_on_push: true
+    run_command: node server.js
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 3003
+    envs:
+      - key: PORT
+        value: "3003"
+        type: GENERAL
+      - key: HOST
+        value: "0.0.0.0"
+        type: GENERAL
+      - key: DATA_DIR
+        value: "/data"
+        type: GENERAL
