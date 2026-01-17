@@ -1,30 +1,21 @@
-name: Deploy Store API to DigitalOcean App Platform
+name: Deploy to DigitalOcean
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Install doctl
-      uses: digitalocean/action-doctl@v2
-      with:
-        token: ${{ secrets.DIGITALOCEAN_API_KEY }}
-
-    - name: Deploy to DigitalOcean App Platform
-      run: |
-        doctl apps create --spec .do/app.yaml --wait || \
-        doctl apps update hanzo-store-api --spec .do/app.yaml --wait
-      env:
-        DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_API_KEY }}
-
-    - name: Get app URL
-      run: |
-        APP_URL=$(doctl apps list --format Name,DefaultIngress --no-header | grep hanzo-store-api | awk '{print $2}')
-        echo "Store API deployed at: https://$APP_URL"
+      - name: Deploy to DigitalOcean App Platform
+        uses: digitalocean/app_action@v2
+        with:
+          app_name: hanzo-store-api
+          token: ${{ secrets.DIGITALOCEAN_API_KEY }}
