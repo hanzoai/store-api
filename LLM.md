@@ -1,4 +1,4 @@
-# LLM.md - Hanzo Store Api
+# Hanzo Store Api
 
 ## Overview
 Hanzo Store API Server
