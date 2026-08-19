@@ -1,6 +1,7 @@
 {
   "name": "hanzo-store",
   "version": "1.0.0",
+  "private": true,
   "description": "Hanzo Store API Server",
   "main": "server.js",
   "scripts": {
